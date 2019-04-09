@@ -12,60 +12,54 @@ from enum import *
 #3 Test your solutions
 
 
-def countField(fig):
-    if fig == 'Circle':
-        radius = get_float('Give radius: ')
-        field = pi * (radius ** 2)
-    elif fig == 'Rectangle':
-        x = get_float('Give first parameter: ')
-        y = get_float('Give second parameter: ')
-        field = x * y
-    elif fig == 'Triangle':
-        x = get_float('Give base: ')
-        y = get_float('Give height: ')
-        field = (x * y) / 2
-    elif fig == 'Rhombus':
-        x = get_float('Give first diagonal: ')
-        y = get_float('Give second diagonal: ')
-        field = (x * y) / 2
 
-    print('Field', field)
+def checkFigure(fig):
+        fig[0] = fig[0].lower()
+        return fig
+
+def checkValues(fig):
+    if fig[1] <= 0:
+        print('Wrong number')
+        return False
+    elif len(fig) > 2:
+        if fig[1] <= 0:
+            print('Wrong number')
+            return False
+    return True
+
+
+def countField(fig):
+    field = 0
+    if fig[0] == 'circle':
+        field = pi * (fig[1] ** 2)
+    elif fig[0] == 'rectangle':
+        field = fig[1] * fig[2]
+    elif fig[0] == 'triangle':
+        field = (fig[1] * fig[2]) / 2
+    elif fig[0] == 'rhombus':
+        field = (fig[1] * fig[2]) / 2
     return field
 
-def getFigure():
-    a = 0
-    while a == 0:
-        fig = input('Write Circle, Rectangle, Triangle or Rhombus: ')
-        if (fig == 'Circle') or (fig == 'Rectangle') or (fig == 'Triangle') or (fig == 'Rhombus'):
-            a = 1
-        else:
-            print('Wrong type')
-    return fig
+
 
 def compareFields(fig1,fig2):
-    if fig1['field'] > fig2['field']:
-        print('First figure '+ fig1['figure'] + ' has larger field')
-    elif fig1['field'] < fig2['field']:
-        print('Second figure '+ fig2['figure'] + ' has larger field')
-    elif fig1['field'] == fig2['field']:
-        print('Fields of both figures are equal')
+        fig = checkFigure(fig1)
+        fig = checkFigure(fig2)
+        field1 = countField(fig1)
+        field2 = countField(fig2)
+        print(field2)
+        if field1 !=0 and field2 != 0:
+            if field1 > field2 and checkValues(fig1) == True and checkValues(fig2) == True:
+                print('First figure ' + fig1[0] + ' has larger field')
+            elif field1 < field2 and checkValues(fig1) == True and checkValues(fig2) == True:
+                print('Second figure ' + fig2[0] + ' has larger field')
+            elif field1 == field2 and checkValues(fig1) == True and checkValues(fig2) == True:
+                print('Fields of both figures are equal')
+        else:
+            print('Wrong figure')
 
 
-
-
-#countField()
-
-fig1 = {'figure': getFigure() }
-fig1['field'] = countField(fig1['figure'])
-fig2 = {'figure': getFigure() }
-fig2['field'] = countField(fig2['figure'])
-
-compareFields(fig1,fig2)
-
-
-
-
-
+compareFields(['Circle', 1],['Triangle', 2, 10])
 
 
 
