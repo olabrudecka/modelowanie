@@ -1,4 +1,4 @@
-git # Installation, preparation: https://www.youtube.com/watch?v=2y2F7x2TPPA
+ # Installation, preparation: https://www.youtube.com/watch?v=2y2F7x2TPPA
 from decimal import *
 from math import *
 from numpy import linspace, ones, zeros, array, arange
@@ -77,7 +77,7 @@ print(len(y))
 print('-'*20)"""
 
 ############## 1 ################
-y=[]
+"""y=[]
 x = arange(56,101,1)
 for i in range(len(x)):
     y.append( 2*(x[i]**2) + 2*x[i] + 2)
@@ -90,26 +90,29 @@ fac = 1
 for i in range(n):
     fac = fac * n
     n = n-1
-print(fac)
+print(fac)"""
 
 ############## 3 ################
-a = [10,6,4,9]
+"""a = [10,6,4,4,9]
+lista = []
 def fun(a):
-    return a.index(min(a))
-fun(a)
+    b = a.index(min(a))
+    lista.append(b)
+    for i in range(b+1,len(a)):
+        if min(a) == a[i]:
+            lista.append(i)
+    return print(lista)
+fun(a)"""
 ############## 4 ################
 a = int(input('Write a number: '))
 def plot_my_fun(a):
     x = arange(0,a+1,1)
-    print(x)
     y = []
     for i in range(a + 1):
         y.append(2*i + sin(30*i))
     plot(x,y)
     show()
 plot_my_fun(a)
-print(x)
-print(y)
 
 #TASKS (4p)
 #1 calculate & print the value of function y = 2x^2 + 2x + 2 for x=[56, 57, ... 100] (0.5p)
