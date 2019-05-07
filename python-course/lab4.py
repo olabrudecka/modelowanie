@@ -103,32 +103,46 @@ from scipy import linspace , cos , exp, random, meshgrid, zeros
 from scipy.optimize import fmin
 from matplotlib.pyplot import plot, show, legend, figure, cm, contour, clabel
 def f(x):
-    return exp(-x[0] ** 2 - x[1] ** 2)
+    return cos(x[1]*2)*np.sin(x[0]*2) + exp(cos(x[1]*0.1)*np.sin(x[0]*0.2))*2
 
 
 def neg_f(x):
     return -f(x)
 
-x0 = random.randn(2)
-x_min = fmin(neg_f, x0)
+a = 300
+for i in range(a):
+    x0 = random.uniform(-3,3),random.uniform(-3,3)
+    x_min = fmin(neg_f, x0, maxiter = 2000, maxfun = 200)
+    if(i== 0):
+        opt_global = x_min
+    elif(f(opt_global) > f(x_min)):
+        opt_global = x_min
+
+
+print(opt_global)
 
 from mpl_toolkits.mplot3d import Axes3D
 
 delta = 3
-x_knots = linspace(x_min[0] - delta, x_min[0] + delta, 41)
-y_knots = linspace(x_min[1] - delta, x_min[1] + delta, 41)
+x_knots = linspace(opt_global[0] - delta, opt_global[0] + delta, 41)
+y_knots = linspace(opt_global[1] - delta, opt_global[1] + delta, 41)
 X, Y = meshgrid(x_knots, y_knots)
 Z = zeros(X.shape)
 for i in range(Z.shape[0]):
     for j in range(Z.shape[1]):
         Z[i][j] = f([X[i, j], Y[i, j]])
 
+
 ax = Axes3D(figure(figsize=(8, 5)))
 ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=0.4)
 ax.plot([x0[0]], [x0[1]], [f(x0)], color='g', marker='o', markersize=5, label='initial')
-ax.plot([x_min[0]], [x_min[1]], [f(x_min)], color='k', marker='o', markersize=5, label='final')
+ax.plot([opt_global[0]], [opt_global[1]], [f(opt_global)], color='k', marker='o', markersize=5, label='final')
 ax.legend()
 show()
+
+
+
+
 
 # TASKS (9p)
 #1 Looking at the Euler method above create your own function which takes:
@@ -148,3 +162,6 @@ show()
 # If your solution is heuristic test its quality. Measure the probability of finding the GLOBAL optimum (1p).
 # You can, for example, execute your search function multiple times and check if the returned result is what you expected.
 # Measure the success / total trials rate (2p).
+
+
+## moja funkcja

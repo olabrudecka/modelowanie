@@ -59,7 +59,7 @@ def compareFields(fig1,fig2):
             print('Wrong figure')
 
 
-compareFields(['Circle', 1],['Triangle', 2, 10])
+compareFields(['Triangle', 10, 10],['Triangle', 10, 10])
 
 
 
