@@ -103,7 +103,7 @@ from scipy import linspace , cos , exp, random, meshgrid, zeros
 from scipy.optimize import fmin
 from matplotlib.pyplot import plot, show, legend, figure, cm, contour, clabel
 def f(x):
-    return cos(x[1]*2)*np.sin(x[0]*2) + exp(cos(x[1]*0.1)*np.sin(x[0]*0.2))*2
+    return cos(x[1]*2)*np.sin(x[0]*2) + (cos(x[1]*0.1)*np.sin(x[0]*0.2))*2
 
 
 def neg_f(x):
